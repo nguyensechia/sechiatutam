@@ -26,10 +26,6 @@
       <p class="section-kicker">☕ Chỉ bằng một ly cà phê...</p>
 
       <div class="offer-box">
-        <p class="offer-box__lead">
-          Để nhận được toàn bộ chất xám và kinh nghiệm này, bạn sẽ không mất gì nhiều đâu. Hãy coi như bạn và mình có duyên gặp gỡ, cùng ngồi xuống trò chuyện với nhau bên ly cà phê.
-          Và bạn chỉ cần tính tiền ly cà phê của bạn cho chủ quán thôi.
-        </p>
         <p class="offer-box__price">Ly cà phê chỉ <strong>39.000đ</strong> — nhưng nó là tấm vé để bạn bắt đầu hành trình giành lại quyền tự chủ cuộc đời mình.</p>
 
         <div class="qr-card">
@@ -38,18 +34,30 @@
             <span class="qr-card__zoom-hint">🔍 Chạm để phóng to</span>
           </button>
 
-          <button class="copy-btn" type="button" id="copy-stk" data-copy="7935797777">
-            <span id="copy-stk-label">📋 Sao chép số tài khoản (7935 7977 77)</span>
+          <button class="copy-btn" type="button" data-copy="7935797777">
+            <span>📋 Sao chép số tài khoản (7935 7977 77)</span>
           </button>
 
+          <div class="pay-divider"><span>hoặc</span></div>
+
+          <div class="momo-block">
+            <p class="momo-block__label">💗 Chuyển khoản qua ví MoMo</p>
+            <button class="copy-btn copy-btn--momo" type="button" data-copy="0764000444">
+              <span>📋 Sao chép số MoMo (0764 000 444)</span>
+            </button>
+          </div>
+
           <p class="qr-card__steps">
-            <strong>Bước 1.</strong> Quét mã, chuyển 39.000đ<br>
+            <strong>Bước 1.</strong> Quét mã Techcombank hoặc chuyển qua MoMo, số tiền 39.000đ<br>
             <strong>Bước 2.</strong> Chụp lại bill, gửi qua Zalo <strong>0945 021 476</strong><br>
             <strong>Bước 3.</strong> Nhận file Sổ Tay PDF ngay trên Zalo
           </p>
           <a class="btn btn--primary btn--pulse" href="https://zalo.me/0945021476">
             Nhấp Vào Đây Để Nhắn Zalo Với Mình Nhé!
           </a>
+          <button class="copy-btn" type="button" data-copy="0945021476">
+            <span>📋 Sao chép số Zalo (0945 021 476)</span>
+          </button>
           <p class="qr-card__fallback">
             Nút không mở được Zalo? Bấm biểu tượng <strong>⋯</strong> ở góc trên màn hình → chọn
             <strong>"Mở bằng trình duyệt"</strong> rồi thử lại nhé.
@@ -81,20 +89,21 @@
   closeBtn.addEventListener('click', close);
   lightbox.addEventListener('click', function (e) { if (e.target === lightbox) close(); });
 
-  var copyBtn = document.getElementById('copy-stk');
-  var copyLabel = document.getElementById('copy-stk-label');
-  copyBtn.addEventListener('click', function () {
-    var value = copyBtn.getAttribute('data-copy');
-    var done = function () {
-      var original = copyLabel.textContent;
-      copyLabel.textContent = '✅ Đã sao chép số tài khoản!';
-      setTimeout(function () { copyLabel.textContent = original; }, 2000);
-    };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(value).then(done).catch(function () { fallbackCopy(value, done); });
-    } else {
-      fallbackCopy(value, done);
-    }
+  document.querySelectorAll('.copy-btn[data-copy]').forEach(function (btn) {
+    var label = btn.querySelector('span');
+    var original = label.textContent;
+    btn.addEventListener('click', function () {
+      var value = btn.getAttribute('data-copy');
+      var done = function () {
+        label.textContent = '✅ Đã sao chép!';
+        setTimeout(function () { label.textContent = original; }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(value).then(done).catch(function () { fallbackCopy(value, done); });
+      } else {
+        fallbackCopy(value, done);
+      }
+    });
   });
 
   function fallbackCopy(text, done) {
