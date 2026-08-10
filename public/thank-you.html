@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cảm ơn bạn — Sẻ Chia Từ Tâm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+  .status-wrap { min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .status-card {
+    max-width: 420px; width: 100%; background: var(--cream);
+    border-radius: var(--radius-lg); box-shadow: var(--shadow);
+    padding: 36px 26px; text-align: center;
+  }
+  .status-icon { font-size: 44px; margin-bottom: 14px; }
+  .status-title { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--brown-deep); margin: 0 0 10px; }
+  .status-desc { color: var(--text-soft); font-size: 15px; margin: 0 0 22px; }
+  .spinner {
+    width: 34px; height: 34px; margin: 0 auto 18px;
+    border: 3px solid var(--beige-dark); border-top-color: var(--sage-dark);
+    border-radius: 50%; animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<div class="status-wrap">
+  <div class="status-card" id="card">
+    <div class="spinner"></div>
+    <h1 class="status-title">Đang xác nhận thanh toán...</h1>
+    <p class="status-desc">Vui lòng chờ trong giây lát, đừng tắt trang này nhé.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const orderId = params.get('orderId');
+  const card = document.getElementById('card');
+
+  function render(state, opts) {
+    if (state === 'paid') {
+      card.innerHTML = `
+        <div class="status-icon">🎉</div>
+        <h1 class="status-title">Cảm ơn bạn rất nhiều!</h1>
+        <p class="status-desc">Sổ tay của bạn đã sẵn sàng. Bấm nút bên dưới để tải về nhé.</p>
+        <a class="btn btn--primary" href="${opts.downloadUrl}">Tải Sổ Tay Ngay</a>
+        <p class="signature" style="margin-top:24px;">@sechiatutam</p>
+      `;
+    } else if (state === 'failed') {
+      card.innerHTML = `
+        <div class="status-icon">😔</div>
+        <h1 class="status-title">Thanh toán chưa thành công</h1>
+        <p class="status-desc">Có vẻ giao dịch đã bị huỷ hoặc gặp lỗi. Bạn quay lại trang chủ và thử lại giúp mình nhé.</p>
+        <a class="btn btn--primary" href="/">Quay Lại Trang Chủ</a>
+      `;
+    } else {
+      card.innerHTML = `
+        <div class="status-icon">⏳</div>
+        <h1 class="status-title">Chưa tìm thấy đơn hàng</h1>
+        <p class="status-desc">Nếu bạn vừa thanh toán xong, hãy tải lại trang này. Nếu vẫn lỗi, liên hệ @sechiatutam để được hỗ trợ.</p>
+        <a class="btn btn--primary" href="/">Quay Lại Trang Chủ</a>
+      `;
+    }
+  }
+
+  async function checkStatus() {
+    if (!orderId) return render('missing');
+
+    try {
+      // Neu MoMo vua redirect ve kem query (resultCode, signature...), xac nhan ngay khong cho IPN
+      if (params.get('resultCode') !== null && params.get('signature')) {
+        await fetch('/api/payment/verify-redirect?' + params.toString());
+      }
+
+      const res = await fetch('/api/payment/status/' + encodeURIComponent(orderId));
+      const data = await res.json();
+
+      if (data.status === 'paid' && data.downloadToken) {
+        render('paid', { downloadUrl: `/download/${orderId}?token=${data.downloadToken}` });
+      } else if (data.status === 'failed') {
+        render('failed');
+      } else {
+        // Van dang cho IPN - thu lai sau 2s (toi da ~6 lan)
+        if (checkStatus._tries === undefined) checkStatus._tries = 0;
+        checkStatus._tries += 1;
+        if (checkStatus._tries < 6) {
+          setTimeout(checkStatus, 2000);
+        } else {
+          render('failed');
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      render('missing');
+    }
+  }
+
+  checkStatus();
+})();
+</script>
+</body>
+</html>

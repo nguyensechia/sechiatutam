@@ -1,0 +1,9 @@
+node_modules/
+.env
+data/orders.json
+*.log
+.DS_Store
+
+# San pham that (PDF ban) - repo GitHub la public, KHONG duoc dua file nay len
+# de tranh bi tai mien phi. Upload thu cong file nay len server khi deploy.
+private/*.pdf
