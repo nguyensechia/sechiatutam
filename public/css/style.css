@@ -77,11 +77,16 @@ h1, h2 {
   color: var(--brown-deep);
 }
 
-.hero__title span {
+.hero__title > span {
   display: block;
   font-size: 0.86em;
   color: var(--brown-warm);
   margin-top: 4px;
+}
+
+.num-zero {
+  font-weight: 900;
+  font-variant-numeric: lining-nums;
 }
 
 .hero__subtitle {
