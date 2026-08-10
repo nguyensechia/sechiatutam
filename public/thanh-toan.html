@@ -33,7 +33,15 @@
         <p class="offer-box__price">Ly cà phê chỉ <strong>39.000đ</strong> — nhưng nó là tấm vé để bạn bắt đầu hành trình giành lại quyền tự chủ cuộc đời mình.</p>
 
         <div class="qr-card">
-          <img class="qr-card__img" src="/images/payment-qr.jpg" alt="Mã QR chuyển khoản Techcombank cho Phạm Thái Nguyên">
+          <button class="qr-card__zoomable" type="button" id="qr-open">
+            <img class="qr-card__img" src="/images/payment-qr.jpg" alt="Mã QR chuyển khoản Techcombank cho Phạm Thái Nguyên">
+            <span class="qr-card__zoom-hint">🔍 Chạm để phóng to</span>
+          </button>
+
+          <button class="copy-btn" type="button" id="copy-stk" data-copy="7935797777">
+            <span id="copy-stk-label">📋 Sao chép số tài khoản (7935 7977 77)</span>
+          </button>
+
           <p class="qr-card__steps">
             <strong>Bước 1.</strong> Quét mã, chuyển 39.000đ<br>
             <strong>Bước 2.</strong> Chụp lại bill, gửi qua Zalo <strong>0945 021 476</strong><br>
@@ -54,6 +62,53 @@
   </section>
 
 </main>
+
+<div class="qr-lightbox" id="qr-lightbox" hidden>
+  <button class="qr-lightbox__close" id="qr-close" type="button" aria-label="Đóng">✕</button>
+  <img class="qr-lightbox__img" src="/images/payment-qr.jpg" alt="Mã QR chuyển khoản — phóng to">
+</div>
+
+<script>
+(function () {
+  var lightbox = document.getElementById('qr-lightbox');
+  var openBtn = document.getElementById('qr-open');
+  var closeBtn = document.getElementById('qr-close');
+
+  function open() { lightbox.hidden = false; document.body.style.overflow = 'hidden'; }
+  function close() { lightbox.hidden = true; document.body.style.overflow = ''; }
+
+  openBtn.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  lightbox.addEventListener('click', function (e) { if (e.target === lightbox) close(); });
+
+  var copyBtn = document.getElementById('copy-stk');
+  var copyLabel = document.getElementById('copy-stk-label');
+  copyBtn.addEventListener('click', function () {
+    var value = copyBtn.getAttribute('data-copy');
+    var done = function () {
+      var original = copyLabel.textContent;
+      copyLabel.textContent = '✅ Đã sao chép số tài khoản!';
+      setTimeout(function () { copyLabel.textContent = original; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(value).then(done).catch(function () { fallbackCopy(value, done); });
+    } else {
+      fallbackCopy(value, done);
+    }
+  });
+
+  function fallbackCopy(text, done) {
+    var el = document.createElement('textarea');
+    el.value = text;
+    el.style.position = 'fixed';
+    el.style.opacity = '0';
+    document.body.appendChild(el);
+    el.select();
+    try { document.execCommand('copy'); done(); } catch (e) {}
+    document.body.removeChild(el);
+  }
+})();
+</script>
 
 </body>
 </html>
