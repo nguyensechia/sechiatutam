@@ -1,81 +1,71 @@
 # Sổ Tay Xây Kênh Viral — Landing Page (Sẻ Chia Từ Tâm)
 
-Landing page mobile-first bán ebook "Sổ Tay Xây Kênh Viral: Từ Số 0 Đến Tự Chủ Tài Chính" (29.000đ),
-thanh toán qua MoMo, tự động giao file PDF sau khi thanh toán thành công.
+Landing page mobile-first bán ebook "Sổ Tay Xây Kênh Viral: Từ Số 0 Đến Tự Chủ Tài Chính" (39.000đ).
+
+**Cách bán hàng hiện tại (đang dùng):** khách quét mã QR chuyển khoản Techcombank, chụp bill gửi qua
+Zalo (0945 021 476), Nguyên xác nhận và gửi file PDF trực tiếp qua Zalo. Không có xử lý thanh toán tự
+động — trang chỉ là một trang tĩnh (HTML/CSS), không cần backend cho luồng này.
 
 ## Cấu trúc
 
 ```
-server.js            Express app
-routes/payment.js    Tạo đơn hàng MoMo, xử lý IPN, kiểm tra trạng thái
-routes/download.js   Giao file PDF (chỉ khi đơn hàng đã thanh toán)
-lib/momo.js          Ký chữ ký & gọi API MoMo v2 (captureWallet)
-lib/store.js         Lưu đơn hàng vào data/orders.json (file-based, đủ cho quy mô nhỏ)
-public/              Landing page tĩnh (index.html, thank-you.html, css, js)
-private/             File PDF gốc — KHÔNG public, chỉ tải được qua route có xác thực
+public/               Landing page (index.html, css, js, images)
+public/images/        founder-photo.jpg (ảnh Nguyên) + payment-qr.png (mã QR chuyển khoản)
+server.js             Express app — chỉ dùng để serve file tĩnh + (tuỳ chọn) route MoMo dưới đây
+private/              File PDF gốc — KHÔNG public, chỉ dùng khi bật lại luồng MoMo tự động
 ```
+
+### Mã đã viết sẵn nhưng đang KHÔNG dùng (dự phòng cho tương lai)
+
+`routes/payment.js`, `routes/download.js`, `lib/momo.js`, `lib/store.js`, `public/thank-you.html` —
+là luồng thanh toán tự động qua MoMo đã viết và test hoạt động (xem lịch sử commit), nhưng trang hiện
+tại không gọi tới các route này nữa vì bạn chưa có tài khoản MoMo Business. Khi nào đăng ký được MoMo
+Business, có thể bật lại bằng cách nối nút CTA trong `public/index.html` sang gọi `/api/payment/create`
+như cũ (xem `git log` để tham khảo phiên bản trước).
 
 ## Chạy thử ở local
 
 ```bash
 npm install
-cp .env.example .env
 npm start
 ```
 
-Mở `http://localhost:3000`. File `.env.example` đã điền sẵn **sandbox test key công khai của MoMo**
-(lấy từ tài liệu MoMo Developers) để bạn bấm nút và thấy luồng redirect sang MoMo hoạt động.
-Đây KHÔNG phải tiền thật.
+Mở `http://localhost:3000` — vì hiện là trang tĩnh nên chỉ cần chạy server để xem, không cần cấu hình
+`.env` (file `.env.example` vẫn còn nhưng chỉ liên quan tới luồng MoMo dự phòng ở trên).
 
-Lưu ý khi test local: MoMo không gọi được IPN (webhook) tới `localhost`, nên xác nhận thanh toán ở
-local dựa vào bước `verify-redirect` khi MoMo chuyển hướng trình duyệt về `thank-you.html` — vẫn hoạt
-động để bạn xem trọn luồng, nhưng khi lên production nên có cả IPN thật (cần domain public HTTPS).
+## Việc bạn cần tự làm
 
-## Trước khi bán thật — việc bạn cần tự làm
+1. **Gửi 2 file ảnh** để mình gắn vào trang (mình không thể tự lưu ảnh bạn dán trong chat, cần bạn lưu
+   file và cho biết đường dẫn, giống cách bạn gửi file PDF trước đó):
+   - Ảnh chân dung của Nguyên → lưu thành `public/images/founder-photo.jpg`
+   - Ảnh mã QR chuyển khoản → lưu thành `public/images/payment-qr.png`
+2. **File PDF thật** — nếu muốn gửi tay qua Zalo thì không cần đưa lên server. Nếu sau này muốn tự
+   động hoá, đặt file vào `private/so-tay-xay-kenh-viral-ebook.pdf` trên server (không qua git, xem
+   `.gitignore`).
 
-1. **Đăng ký MoMo Business** để lấy `Partner Code`, `Access Key`, `Secret Key` thật (mình không thể
-   tạo tài khoản doanh nghiệp hộ bạn). Điền vào `.env` trên server production, đổi
-   `MOMO_ENDPOINT=https://payment.momo.vn/v2/gateway/api/create`.
-2. Đối chiếu lại `lib/momo.js` với [tài liệu MoMo mới nhất](https://developers.momo.vn) trước khi
-   nhận tiền thật — API cổng thanh toán có thể thay đổi field theo thời gian, mình viết theo tài liệu
-   v2 hiện hành nhưng chưa test được end-to-end với tài khoản thật.
-3. Ảnh minh hoạ ở Hero hiện là **mockup vẽ bằng SVG/CSS** (cuốn sổ + ly cà phê), không phải ảnh chụp
-   thật, vì mình không có công cụ tạo ảnh trong phiên làm việc này. Nếu muốn dùng ảnh chụp thật (góc
-   quán cà phê, mockup 3D), thay file trong `public/images/` và sửa `public/index.html`.
-4. **File PDF thật không nằm trong Git** (repo public trên GitHub, xem `.gitignore`) — phải tự upload
-   trực tiếp lên server, xem bước 5 bên dưới.
+## Deploy lên Hostinger — domain: sechiatutam.com
 
-## Deploy lên Hostinger (Node.js Hosting / VPS) — domain: sechiatutam.com
-
-1. Trong hPanel Hostinger, tạo một **Node.js App** (hoặc nếu dùng VPS, cài Node.js ≥ 18 + PM2 thủ công).
-2. Trỏ `sechiatutam.com` vào app này (đã trỏ), bật SSL (Hostinger có Let's Encrypt miễn phí) — bắt
-   buộc phải có HTTPS vì MoMo yêu cầu `redirectUrl`/`ipnUrl` là HTTPS.
-3. Lấy code từ GitHub (repo đã push sẵn):
+1. Trong hPanel Hostinger, tạo một **Node.js App** (hoặc dùng Static/Website hosting thông thường vì
+   trang hiện tại không cần backend động — chỉ cần serve file tĩnh trong `public/`).
+2. Trỏ `sechiatutam.com` vào app này (đã trỏ), bật SSL (Hostinger có Let's Encrypt miễn phí).
+3. Lấy code từ GitHub:
    ```bash
    git clone https://github.com/nguyensechia/sechiatutam.git
    cd sechiatutam
    ```
-   (hoặc nếu Hostinger hỗ trợ Git deploy trong hPanel, trỏ thẳng vào repo này.)
-4. Trên server, tạo file `.env` thật:
-   ```bash
-   cp .env.example .env
-   ```
-   rồi sửa: điền MoMo key thật, `MOMO_ENDPOINT=https://payment.momo.vn/v2/gateway/api/create`, và
-   `BASE_URL=https://sechiatutam.com`.
-5. **Upload file PDF thật** vào `private/so-tay-xay-kenh-viral-ebook.pdf` trên server qua File
-   Manager/SFTP (không có sẵn sau khi `git clone` vì bị loại trừ khỏi repo).
-6. Cài dependency và khởi động:
+4. Upload 2 file ảnh vào `public/images/` nếu chưa có sẵn trong repo lúc clone.
+5. Nếu deploy qua Node.js App:
    ```bash
    npm install --production
    npm start
    ```
-   Nếu dùng VPS, nên chạy qua PM2 để tự khởi động lại khi crash:
+   Nếu dùng VPS, nên chạy qua PM2:
    ```bash
    npm install -g pm2
    pm2 start server.js --name sechiatutam-landing
    pm2 save
    ```
-7. Kiểm tra `https://sechiatutam.com/health` trả về `{"ok":true}`.
+6. Kiểm tra `https://sechiatutam.com/health` trả về `{"ok":true}`.
 
 ## GitHub
 

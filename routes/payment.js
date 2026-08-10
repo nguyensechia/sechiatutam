@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/create', async (req, res) => {
   try {
     const orderId = `SCTT${Date.now()}${nanoid(5)}`;
-    const amount = Number(process.env.PRODUCT_PRICE || 29000);
+    const amount = Number(process.env.PRODUCT_PRICE || 39000);
     const orderInfo = process.env.PRODUCT_NAME || 'So Tay Xay Kenh Viral';
     const downloadToken = nanoid(24);
 
