@@ -42,15 +42,29 @@ local dựa vào bước `verify-redirect` khi MoMo chuyển hướng trình duy
 3. Ảnh minh hoạ ở Hero hiện là **mockup vẽ bằng SVG/CSS** (cuốn sổ + ly cà phê), không phải ảnh chụp
    thật, vì mình không có công cụ tạo ảnh trong phiên làm việc này. Nếu muốn dùng ảnh chụp thật (góc
    quán cà phê, mockup 3D), thay file trong `public/images/` và sửa `public/index.html`.
+4. **File PDF thật không nằm trong Git** (repo public trên GitHub, xem `.gitignore`) — phải tự upload
+   trực tiếp lên server, xem bước 5 bên dưới.
 
-## Deploy lên Hostinger (Node.js Hosting / VPS)
+## Deploy lên Hostinger (Node.js Hosting / VPS) — domain: sechiatutam.com
 
 1. Trong hPanel Hostinger, tạo một **Node.js App** (hoặc nếu dùng VPS, cài Node.js ≥ 18 + PM2 thủ công).
-2. Trỏ domain của bạn vào app này, bật SSL (Hostinger có Let's Encrypt miễn phí) — bắt buộc phải có
-   HTTPS vì MoMo yêu cầu `redirectUrl`/`ipnUrl` là HTTPS.
-3. Upload code (qua Git deploy nếu Hostinger hỗ trợ, hoặc kéo/thả qua File Manager, hoặc SSH + `git clone`).
-4. Trên server, tạo file `.env` thật (copy từ `.env.example`, điền MoMo key thật + `BASE_URL` là domain thật).
-5. Cài dependency và khởi động:
+2. Trỏ `sechiatutam.com` vào app này (đã trỏ), bật SSL (Hostinger có Let's Encrypt miễn phí) — bắt
+   buộc phải có HTTPS vì MoMo yêu cầu `redirectUrl`/`ipnUrl` là HTTPS.
+3. Lấy code từ GitHub (repo đã push sẵn):
+   ```bash
+   git clone https://github.com/nguyensechia/sechiatutam.git
+   cd sechiatutam
+   ```
+   (hoặc nếu Hostinger hỗ trợ Git deploy trong hPanel, trỏ thẳng vào repo này.)
+4. Trên server, tạo file `.env` thật:
+   ```bash
+   cp .env.example .env
+   ```
+   rồi sửa: điền MoMo key thật, `MOMO_ENDPOINT=https://payment.momo.vn/v2/gateway/api/create`, và
+   `BASE_URL=https://sechiatutam.com`.
+5. **Upload file PDF thật** vào `private/so-tay-xay-kenh-viral-ebook.pdf` trên server qua File
+   Manager/SFTP (không có sẵn sau khi `git clone` vì bị loại trừ khỏi repo).
+6. Cài dependency và khởi động:
    ```bash
    npm install --production
    npm start
@@ -61,22 +75,12 @@ local dựa vào bước `verify-redirect` khi MoMo chuyển hướng trình duy
    pm2 start server.js --name sechiatutam-landing
    pm2 save
    ```
-6. Kiểm tra `https://tenmien-cua-ban.com/health` trả về `{"ok":true}`.
+7. Kiểm tra `https://sechiatutam.com/health` trả về `{"ok":true}`.
 
-## Đưa code lên GitHub
+## GitHub
 
-Mình chưa tạo/push repo GitHub vì đó là hành động công khai cần bạn xác nhận trực tiếp. Khi bạn đã
-sẵn sàng và cho mình biết tên tài khoản/repo GitHub, mình sẽ khởi tạo git, commit, và push giúp. Nếu
-muốn tự làm:
+Code đã được push lên [github.com/nguyensechia/sechiatutam](https://github.com/nguyensechia/sechiatutam)
+nhánh `main`. Khi sửa code thêm, commit và `git push` như bình thường để cập nhật repo.
 
-```bash
-git init
-git add .
-git commit -m "Landing page So Tay Xay Kenh Viral"
-git branch -M main
-git remote add origin https://github.com/<ten-tai-khoan>/<ten-repo>.git
-git push -u origin main
-```
-
-`.gitignore` đã loại trừ `node_modules/`, `.env`, và `data/orders.json` — không đẩy dữ liệu đơn hàng
-hay khoá bí mật lên GitHub.
+`.gitignore` đã loại trừ `node_modules/`, `.env`, `data/orders.json`, và `private/*.pdf` — không đẩy
+dữ liệu đơn hàng, khoá bí mật, hay file sản phẩm thật lên GitHub công khai.
