@@ -4,6 +4,7 @@ const path = require('path');
 
 const paymentRoutes = require('./routes/payment');
 const downloadRoutes = require('./routes/download');
+const leadRoutes = require('./routes/lead');
 
 const app = express();
 app.use(express.json());
@@ -11,6 +12,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/payment', paymentRoutes);
 app.use('/download', downloadRoutes);
+app.use('/api/lead', leadRoutes);
 
 app.get('/health', (req, res) => res.json({ ok: true }));
 

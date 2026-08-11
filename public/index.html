@@ -420,7 +420,7 @@
         <span>Ví MoMo: 0764 000 444</span>
         <button class="copy-btn" data-copy="0764000444">Sao chép</button>
       </div>
-      <p style="font-size:0.82rem; opacity:0.7;">Nội dung chuyển khoản gợi ý: <em>"SoTay [tên bạn]"</em></p>
+      <p style="font-size:0.82rem; opacity:0.7;">Nội dung chuyển khoản gợi ý: <em id="transferNote">"[tên bạn] [số điện thoại]"</em></p>
 
       <button class="btn btn-gold" style="width:100%; margin-top:8px;" id="confirmBtn" onclick="confirmPaid()">✅ Mình đã chuyển khoản — Gửi xác nhận</button>
       <p class="confirm-note" id="confirmNote">Bấm nút này sau khi chuyển khoản xong — mình sẽ copy sẵn tin nhắn xác nhận cho bạn, bạn chỉ cần tự mở Zalo, tìm số 0945 021 476, dán và bấm gửi.</p>
@@ -487,10 +487,17 @@
     document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
     document.getElementById('step-'+n).classList.add('active');
     document.getElementById('order').scrollIntoView({behavior:'smooth', block:'start'});
+
+    if(n === 2){
+      const name = document.getElementById('fname').value.trim();
+      const zalo = document.getElementById('fzalo').value.trim();
+      const transferNote = document.getElementById('transferNote');
+      transferNote.textContent = (name && zalo) ? `"${name} ${zalo}"` : '"[tên bạn] [số điện thoại]"';
+    }
   }
 
   // Confirm paid -> copy message (khong tu mo tab Zalo vi trinh duyet trong-app
-  // cua TikTok thuong chan viec mo tab moi / custom URL scheme)
+  // cua TikTok thuong chan viec mo tab moi / custom URL scheme) + bao email cho chu shop
   const ZALO_NUMBER = "0945021476";
   function confirmPaid(){
     const name = document.getElementById('fname').value.trim() || "(chưa nhập tên)";
@@ -504,6 +511,13 @@
     });
     note.classList.add('success');
     document.getElementById('confirmBtn').textContent = "✅ Đã sẵn sàng gửi xác nhận";
+
+    // Bao email cho chu shop, khong chan luong UI neu loi/cham
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, phone: zalo }),
+    }).catch(()=>{});
   }
 
   // Countdown to end of today (local time) — honest daily-offer framing

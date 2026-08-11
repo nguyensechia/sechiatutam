@@ -1,6 +1,7 @@
 node_modules/
 .env
 data/orders.json
+data/leads.json
 *.log
 .DS_Store
 
