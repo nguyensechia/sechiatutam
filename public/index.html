@@ -4,129 +4,536 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Sổ Tay Xây Kênh Viral — Từ Số 0 Đến Tự Chủ Tài Chính | Sẻ Chia Từ Tâm</title>
-<meta name="description" content="Bí quyết xây dựng thương hiệu cá nhân chỉ với một chiếc điện thoại. Sổ tay điện tử chỉ 39.000đ từ Sẻ Chia Từ Tâm.">
+<meta name="description" content="Sổ tay điện tử 39.000đ: bí quyết xây kênh TikTok viral chỉ với 1 chiếc điện thoại, dành cho phụ nữ muốn tự chủ tài chính. Nhận sách ngay trong vài phút.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#2A1B20;
+    --plum-900:#241019;
+    --plum-800:#3A1B2C;
+    --plum-700:#4E2740;
+    --paper:#FBF3ED;
+    --paper-2:#F5E6DE;
+    --gold:#C08A2E;
+    --gold-light:#E0B65C;
+    --rose:#E6BDB6;
+    --sage:#5C8266;
+    --cream-ink:#FBF3ED;
+    --line:rgba(42,27,32,0.14);
+    --line-on-dark:rgba(251,243,237,0.18);
+    --shadow:0 20px 50px -20px rgba(36,16,25,0.35);
+    --radius:18px;
+    --maxw:1080px;
+    font-size:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;} }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Be Vietnam Pro',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:600; margin:0 0 0.5em; line-height:1.12; letter-spacing:-0.01em;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.14em;
+    text-transform:uppercase; font-weight:600; opacity:0.75;
+  }
+  section{padding:clamp(48px,8vw,96px) 0;}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    font-family:'Be Vietnam Pro',sans-serif; font-weight:700; font-size:1rem;
+    padding:16px 30px; border-radius:100px; border:none; cursor:pointer;
+    text-decoration:none; transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:active{transform:scale(0.97);}
+  .btn:focus-visible{outline:3px solid var(--gold-light); outline-offset:3px;}
+  .btn-gold{ background:linear-gradient(180deg,var(--gold-light),var(--gold)); color:var(--plum-900); box-shadow:0 12px 30px -10px rgba(192,138,46,0.55);}
+  .btn-gold:hover{box-shadow:0 16px 36px -8px rgba(192,138,46,0.7);}
+  .btn-outline{ background:transparent; border:1.5px solid var(--line-on-dark); color:var(--cream-ink); }
+  .price-tag{font-family:'IBM Plex Mono',monospace;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:radial-gradient(1200px 600px at 20% -10%, var(--plum-700), var(--plum-900) 60%);
+    color:var(--cream-ink);
+    position:relative; overflow:hidden;
+    padding-top:clamp(28px,6vw,48px);
+  }
+  .topbar{display:flex; align-items:center; justify-content:space-between; padding:6px 0 28px; font-family:'IBM Plex Mono',monospace; font-size:0.82rem;}
+  .topbar .handle{opacity:0.85;}
+  .social-links{display:flex; align-items:center; gap:14px;}
+  .social-links a{color:var(--cream-ink); opacity:0.75; display:flex; transition:opacity .15s ease, color .15s ease;}
+  .social-links a:hover{opacity:1; color:var(--gold-light);}
+  footer .social-links{justify-content:center; gap:18px; margin:14px 0;}
+  footer .social-links a{color:rgba(251,243,237,0.65);}
+  footer .social-links a:hover{color:var(--gold-light);}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;}
+  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero h1{font-size:clamp(2.1rem,4.6vw,3.4rem); color:#fff;}
+  .hero .lede{font-size:1.1rem; max-width:46ch; opacity:0.92; margin-bottom:1.6em;}
+  .trust-row{display:flex; flex-wrap:wrap; gap:16px; margin-top:22px; font-size:0.85rem; opacity:0.85;}
+  .trust-row span{display:flex; align-items:center; gap:6px;}
+
+  /* phone mock */
+  .phone{
+    width:min(280px,80vw); margin:0 auto; aspect-ratio:9/18.5;
+    background:#0F0710; border-radius:34px; border:3px solid rgba(255,255,255,0.15);
+    padding:10px; box-shadow:var(--shadow); position:relative;
+  }
+  .phone-screen{
+    height:100%; border-radius:24px; overflow:hidden; position:relative;
+    background:linear-gradient(160deg,#5C2A47,#2A1420 70%);
+    display:flex; flex-direction:column; justify-content:flex-end; padding:16px;
+  }
+  .phone-hook{
+    background:rgba(0,0,0,0.35); backdrop-filter:blur(4px); border-radius:12px; padding:12px 14px;
+    font-size:0.85rem; line-height:1.4; color:#fff; margin-bottom:10px;
+  }
+  .phone-tag{ font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; color:var(--gold-light); text-transform:uppercase; margin-bottom:6px;}
+  .phone-progress{height:3px; background:rgba(255,255,255,0.25); border-radius:3px; overflow:hidden; margin-top:10px;}
+  .phone-progress i{display:block; width:38%; height:100%; background:var(--gold-light);}
+
+  /* ---------- STORY ---------- */
+  .story{background:var(--paper);}
+  .story-grid{display:grid; grid-template-columns:220px 1fr; gap:40px; align-items:start;}
+  @media (max-width:700px){ .story-grid{grid-template-columns:1fr;} }
+  .founder-photo{border-radius:16px; overflow:hidden; box-shadow:var(--shadow); aspect-ratio:1; object-fit:cover;}
+  .story blockquote{
+    font-family:'Fraunces',serif; font-weight:500; font-style:italic; font-size:1.3rem;
+    color:var(--plum-800); border-left:3px solid var(--gold); margin:0.8em 0; padding-left:20px;
+  }
+
+  /* ---------- TOC / notebook ---------- */
+  .toc{background:var(--paper-2);}
+  .toc-head{max-width:60ch; margin-bottom:34px;}
+  .toc-list{display:grid; gap:0; border-top:1px solid var(--line);}
+  .toc-item{
+    display:grid; grid-template-columns:64px 1fr; gap:18px; padding:20px 4px;
+    border-bottom:1px solid var(--line); align-items:baseline;
+  }
+  .toc-num{font-family:'IBM Plex Mono',monospace; color:var(--gold); font-weight:600; font-size:0.95rem;}
+  .toc-item h3{font-family:'Be Vietnam Pro',sans-serif; font-weight:700; font-size:1.05rem; margin:0 0 4px;}
+  .toc-item p{margin:0; opacity:0.78; font-size:0.95rem; max-width:60ch;}
+  .toc-preview{margin-top:34px; display:flex; gap:16px; align-items:center; flex-wrap:wrap;}
+  .toc-preview img{width:120px; border-radius:8px; box-shadow:var(--shadow); border:1px solid var(--line); cursor:zoom-in;}
+  .toc-preview p{font-size:0.9rem; opacity:0.75; max-width:38ch;}
+
+  /* ---------- PRICE / receipt ---------- */
+  .price-sec{background:var(--paper);}
+  .receipt{
+    max-width:400px; margin:34px auto 0; background:#fff; border-radius:10px;
+    box-shadow:var(--shadow); padding:28px 24px; position:relative;
+    border:1px dashed var(--line);
+  }
+  .receipt::before, .receipt::after{
+    content:""; position:absolute; width:20px; height:20px; background:var(--paper);
+    border-radius:50%; left:-10px; top:50%; transform:translateY(-50%);
+  }
+  .receipt::after{left:auto; right:-10px;}
+  .receipt-row{display:flex; justify-content:space-between; font-family:'IBM Plex Mono',monospace; font-size:0.9rem; padding:6px 0; border-bottom:1px dashed var(--line);}
+  .receipt-row.total{font-weight:700; font-size:1.1rem; border-bottom:none; padding-top:12px;}
+  .old-price{text-decoration:line-through; opacity:0.5;}
+  .receipt-badge{
+    display:inline-block; background:var(--sage); color:#fff; font-size:0.72rem; font-weight:700;
+    padding:4px 10px; border-radius:100px; margin-bottom:14px; font-family:'Be Vietnam Pro',sans-serif;
+  }
+  .countdown{
+    font-family:'IBM Plex Mono',monospace; text-align:center; margin-top:14px; font-size:0.85rem;
+    color:var(--gold); font-weight:600;
+  }
+  .price-cta{display:block; width:100%; margin-top:18px;}
+
+  /* ---------- GUARANTEE ---------- */
+  .guarantee{background:var(--rose); }
+  .guarantee-box{
+    max-width:760px; margin:0 auto; background:#fff; border-radius:var(--radius); padding:clamp(24px,4vw,40px);
+    box-shadow:var(--shadow);
+  }
+  .guarantee-box h2{font-size:1.6rem;}
+  .guarantee-box ol{padding-left:1.2em; margin:1em 0;}
+  .guarantee-box li{margin-bottom:0.5em;}
+
+  /* ---------- FAQ ---------- */
+  .faq{background:var(--paper-2);}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-item summary{
+    cursor:pointer; padding:18px 4px; font-weight:700; list-style:none; display:flex;
+    justify-content:space-between; align-items:center; gap:12px;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:"+"; font-family:'IBM Plex Mono',monospace; font-size:1.3rem; color:var(--gold); flex-shrink:0;}
+  .faq-item[open] summary::after{content:"–";}
+  .faq-item p{margin:0 0 18px; opacity:0.82; padding-right:20px;}
+
+  /* ---------- ORDER ---------- */
+  .order{background:linear-gradient(180deg,var(--plum-800),var(--plum-900)); color:var(--cream-ink); scroll-margin-top:20px;}
+  .order-card{
+    max-width:520px; margin:0 auto; background:rgba(255,255,255,0.04); border:1px solid var(--line-on-dark);
+    border-radius:var(--radius); padding:clamp(22px,4vw,36px); backdrop-filter:blur(6px);
+  }
+  .step{display:none;}
+  .step.active{display:block;}
+  .step-label{font-family:'IBM Plex Mono',monospace; font-size:0.75rem; letter-spacing:0.1em; color:var(--gold-light); text-transform:uppercase; margin-bottom:10px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:0.88rem; margin-bottom:6px; opacity:0.9;}
+  .field input{
+    width:100%; padding:14px 16px; border-radius:10px; border:1px solid var(--line-on-dark);
+    background:rgba(255,255,255,0.06); color:#fff; font-size:1rem; font-family:inherit;
+  }
+  .field input::placeholder{color:rgba(255,255,255,0.4);}
+  .field input:focus-visible{outline:2px solid var(--gold-light); outline-offset:2px;}
+  .qr-box{background:#fff; border-radius:14px; padding:16px; text-align:center; margin:16px 0;}
+  .qr-box img{width:200px; margin:0 auto 10px; border-radius:8px; cursor:zoom-in;}
+  .qr-box .zoom-hint{font-size:0.78rem; color:var(--sage); font-weight:600; margin:-4px 0 10px;}
+  .copy-row{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    background:rgba(255,255,255,0.06); border:1px solid var(--line-on-dark); border-radius:10px;
+    padding:12px 14px; margin-bottom:10px; font-family:'IBM Plex Mono',monospace; font-size:0.92rem;
+  }
+  .copy-btn{
+    background:none; border:1px solid var(--line-on-dark); color:var(--cream-ink); border-radius:8px;
+    padding:7px 12px; font-size:0.8rem; cursor:pointer; font-family:'Be Vietnam Pro',sans-serif; font-weight:600;
+    flex-shrink:0;
+  }
+  .copy-btn:hover{border-color:var(--gold-light); color:var(--gold-light);}
+  .copy-btn.done{color:var(--sage); border-color:var(--sage);}
+  .confirm-note{font-size:0.85rem; opacity:0.82; margin-top:14px; line-height:1.5;}
+  .confirm-note.success{color:#B7D8C1; opacity:1;}
+  .back-step{background:none; border:none; color:var(--gold-light); font-size:0.85rem; cursor:pointer; padding:0; margin-top:16px; text-decoration:underline;}
+
+  /* sticky mobile bar */
+  .sticky-bar{
+    position:fixed; left:0; right:0; bottom:0; z-index:40; background:var(--plum-900);
+    border-top:1px solid var(--line-on-dark); padding:12px 16px; display:flex; align-items:center;
+    justify-content:space-between; gap:14px; transform:translateY(120%); transition:transform .25s ease;
+    box-shadow:0 -10px 30px rgba(0,0,0,0.25);
+  }
+  .sticky-bar.show{transform:translateY(0);}
+  .sticky-bar .p{color:var(--cream-ink); font-family:'IBM Plex Mono',monospace;}
+  .sticky-bar .p b{color:var(--gold-light); font-size:1.1rem;}
+  .sticky-bar .btn{padding:12px 20px; font-size:0.92rem;}
+
+  footer{background:var(--plum-900); color:rgba(251,243,237,0.6); text-align:center; padding:36px 20px 90px; font-size:0.85rem;}
+  footer a{color:var(--gold-light); text-decoration:none;}
+
+  .center{text-align:center;}
+  .sec-cta{margin-top:28px;}
+
+  /* ---------- IMAGE LIGHTBOX ---------- */
+  .lightbox[hidden]{display:none;}
+  .lightbox{
+    position:fixed; inset:0; background:rgba(20,12,6,0.9); display:flex; align-items:center;
+    justify-content:center; padding:28px; z-index:100;
+  }
+  .lightbox img{width:100%; max-width:440px; border-radius:14px; box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+  .lightbox__close{
+    position:absolute; top:20px; right:20px; width:40px; height:40px; border-radius:50%;
+    border:none; background:rgba(255,255,255,0.15); color:#FFFDF8; font-size:18px; cursor:pointer;
+  }
+</style>
 </head>
 <body>
 
-<main>
-
-  <!-- ============ HERO ============ -->
-  <section class="hero">
-    <div class="hero__inner">
-      <img class="hero__photo" src="/images/founder-photo.jpg" alt="Nguyên — người sáng lập Sẻ Chia Từ Tâm">
-
-      <p class="brand-tag">
-        <a href="https://www.tiktok.com/@sechiatutam" target="_blank" rel="noopener">@sechiatutam trên TikTok</a>
-      </p>
-
-      <h1 class="hero__title">Sổ Tay Xây Kênh Viral: <span>Từ Số <span class="num-zero">0</span> Đến Tự Chủ Tài Chính</span></h1>
-
-      <p class="hero__subtitle">Bí quyết xây dựng thương hiệu cá nhân chỉ với một chiếc điện thoại<br>Mình làm được, bạn cũng sẽ làm được!</p>
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <span class="handle">@sechiatutam · Sẻ Chia Từ Tâm</span>
+      <span class="social-links">
+        <a href="https://www.tiktok.com/@sechiatutam" target="_blank" rel="noopener" aria-label="TikTok @sechiatutam" title="TikTok">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82c-1.02-.9-1.6-2.17-1.6-3.6h-3.2v13.4c0 1.62-1.32 2.94-2.94 2.94s-2.94-1.32-2.94-2.94 1.32-2.94 2.94-2.94c.3 0 .58.05.85.13V9.4a6.1 6.1 0 0 0-.85-.06A6.15 6.15 0 0 0 2.72 15.5 6.15 6.15 0 0 0 8.86 21.6a6.15 6.15 0 0 0 6.15-6.15V9.05a8.4 8.4 0 0 0 4.9 1.57V7.4a5.1 5.1 0 0 1-3.31-1.58z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@sechiatutam" target="_blank" rel="noopener" aria-label="YouTube @sechiatutam" title="YouTube">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/sechiatutam" target="_blank" rel="noopener" aria-label="Facebook Sẻ Chia Từ Tâm" title="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
+        </a>
+      </span>
     </div>
-  </section>
-
-  <!-- ============ SECTION 2: TÂM TÌNH ============ -->
-  <section class="section section--letter">
-    <div class="section__inner">
-      <h2 class="section__title">Vài dòng tâm tình từ Nguyên...</h2>
-
-      <div class="letter">
-        <p>Thời gian gần đây, kênh của mình nhận được rất nhiều lời mời hợp tác và giới thiệu sản phẩm từ các nhãn hàng. Thực sự, mình vô cùng biết ơn bạn — những khán giả đã luôn âm thầm theo dõi, và ủng hộ mình. Và khi nhìn lại hành trình chưa được 1 tháng này, mình nhận ra một điều: thay vì chỉ nhận booking, làm affiliate để kiếm tiền cho riêng mình, tại sao mình không chỉ lại cách làm cho những người thực sự cần nó? Mình biết, ngoài kia có rất nhiều chị em đang loay hoay:</p>
-
-        <ul class="pain-list">
-          <li>Rất muốn tự chủ kinh tế nhưng không biết bắt đầu từ đâu?</li>
-          <li>Có những câu chuyện muốn kể, nhưng lại sợ ống kính, sợ phán xét?</li>
-          <li>Và nghĩ rằng làm video cần phải rành công nghệ, cần máy tính xịn xò hay thiết bị đắt tiền?</li>
-        </ul>
-
-        <p>Mình hiểu hết những nỗi sợ đó. Nhưng bạn à, toàn bộ kênh TikTok Sẻ Chia Từ Tâm hiện tại của mình, mình đều tự quay và dựng chỉ bằng chiếc điện thoại của mình trị giá vỏn vẹn <strong>2 triệu đồng</strong>. Không hề có thiết bị đắt đỏ nào cả!</p>
-        <p class="letter__sign">Nguyên - sechiatutam</p>
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow" style="color:var(--gold-light)">Sổ tay điện tử · 39.000đ</p>
+        <h1>Xây kênh viral, chỉ với 1 chiếc điện thoại</h1>
+        <p class="lede">Sổ tay đúc kết cách mình xây kênh Sẻ Chia Từ Tâm từ con số 0 — không cần máy quay xịn, không cần rành công nghệ. Đọc xong trong một buổi, quay video đầu tiên ngay hôm nay.</p>
+        <a href="#order" class="btn btn-gold">Nhận sổ tay — 39.000đ</a>
+        <div class="trust-row">
+          <span>⚡ Nhận sách trong vài phút</span>
+          <span>🔒 Thanh toán qua chuyển khoản / MoMo</span>
+          <span>↩ Có điều kiện hoàn tiền rõ ràng</span>
+        </div>
+      </div>
+      <div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="phone-tag">Hook 3 giây đầu</div>
+            <div class="phone-hook">"Đây là dấu hiệu rõ nhất cho thấy bạn đang hy sinh quá nhiều trong một mối quan hệ..."</div>
+            <div class="phone-progress"><i></i></div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</header>
 
-  <!-- ============ SECTION 3: GIẢI PHÁP ============ -->
-  <section class="section section--solution">
-    <div class="section__inner">
-      <p class="section-kicker">🎁 Giải pháp dành cho bạn</p>
-      <h2 class="section__title">Tấm bản đồ này có gì dành cho bạn?</h2>
-
-      <p class="solution-intro">
-        Tất cả những bí quyết thực chiến nhất đã được đúc kết trong cuốn <strong>Sổ Tay Xây Kênh Viral: Từ Số 0 Đến Tự Chủ Tài Chính</strong>.
-        Cuốn sổ tay này được thiết kế tối giản, loại bỏ mọi rào cản kỹ thuật phức tạp để bất kỳ ai — dù chưa từng có kinh nghiệm — cũng có thể bắt đầu ngay hôm nay.
-      </p>
-      <p class="solution-intro solution-intro--emphasis">Chỉ chưa tới một buổi đọc, bạn sẽ nắm trọn:</p>
-
-      <ul class="feature-list">
-        <li>
-          <span class="feature-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 3c-3 3-3 8 0 11 3-3 3-8 0-11z" fill="currentColor"/><path d="M12 14v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-          <div>
-            <p class="feature-title">Chiến lược "Mỏ Vàng"</p>
-            <p class="feature-desc">3 ngách nội dung tạo ra độ gắn kết và tỷ lệ chuyển đổi cao nhất dành riêng cho phụ nữ.</p>
-          </div>
-        </li>
-        <li>
-          <span class="feature-icon">
-            <svg viewBox="0 0 24 24"><path d="M5 12l5 5L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <div>
-            <p class="feature-title">Nghệ thuật "Thôi Miên"</p>
-            <p class="feature-desc">Quy trình sản xuất 30 kịch bản viral/tháng chỉ trong một buổi, và cách khóa chặt sự chú ý bằng tử huyệt 3 giây đầu tiên (The Hook).</p>
-          </div>
-        </li>
-        <li>
-          <span class="feature-icon">
-            <svg viewBox="0 0 24 24"><path d="M4 12l4-8 4 8-4 8-4-8zM16 12l4-8 4 8-4 8-4-8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-          </span>
-          <div>
-            <p class="feature-title">Sản xuất video không cần rành công nghệ</p>
-            <p class="feature-desc">Nghệ thuật tự tạo bối cảnh (nói KHÔNG với reup) và cách dùng tính năng phụ đề chữ (Voice-to-Text) làm vũ khí giữ chân người xem.</p>
-          </div>
-        </li>
-        <li>
-          <span class="feature-icon">
-            <svg viewBox="0 0 24 24"><path d="M5 12l5 5L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <div>
-            <p class="feature-title">Biến lượt xem thành dòng tiền</p>
-            <p class="feature-desc">4 cách thực tế nhất để tạo ra thu nhập khi kênh bắt đầu tăng trưởng.</p>
-          </div>
-        </li>
-      </ul>
+<!-- ============ STORY ============ -->
+<section class="story">
+  <div class="wrap story-grid">
+    <img class="founder-photo" src="/images/founder-photo.jpg" alt="Nguyên — người sáng lập Sẻ Chia Từ Tâm">
+    <div>
+      <h2 style="font-size:1.6rem">Mình không rành công nghệ. Mình chỉ có một chiếc điện thoại 2 triệu.</h2>
+      <p>Toàn bộ kênh TikTok Sẻ Chia Từ Tâm hiện tại, mình tự quay và tự dựng chỉ bằng chiếc điện thoại đó. Không thiết bị đắt đỏ, không đội ngũ. Sau khi kênh bắt đầu có người theo dõi, mình nhận ra: thay vì chỉ nhận booking cho riêng mình, mình muốn chỉ lại đúng cách mình đã làm cho những chị em đang loay hoay như mình từng loay hoay.</p>
+      <blockquote>"Sự rụt rè hôm nay có thể cướp đi tương lai tự do của bạn."</blockquote>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ============ SECTION 4: CAM KẾT ============ -->
-  <section class="section section--final">
-    <div class="section__inner">
-      <p class="section-kicker">🤝 Lời khẳng định của mình</p>
-      <h2 class="final__title">Mình trao cho bạn tấm bản đồ. Và đây là cam kết của mình:</h2>
-
-      <p class="commit-text">
-        Nếu bạn áp dụng đúng chiến lược trong cuốn sổ tay này, kiên trì làm đúng 30 video trong 30 ngày mà kênh của bạn <strong>KHÔNG</strong> lên được 2.000 Follower... Mình sẽ mời lại bạn <strong>10 ly cà phê!</strong>
-      </p>
-
-      <p class="closing-text">
-        Sự rụt rè ngày hôm nay có thể cướp đi tương lai tự do của bạn. Vài video đầu chắc chắn sẽ lóng ngóng, ngượng ngùng. Nhưng hãy tin mình, bước qua được chúng, mọi thứ sẽ trở nên nhẹ tênh.
-      </p>
-      <p class="closing-text closing-text--strong">
-        Chiếc điện thoại đang ở trên tay bạn.<br>
-        Cơ hội thay đổi cuộc sống đang nằm ngay trước mắt.
-      </p>
-
-      <a class="btn btn--primary btn--pulse" href="/thanh-toan.html">NHẤN VÀO ĐÂY ĐỂ NHẬN BÍ QUYẾT</a>
-
-      <p class="signature">@sechiatutam</p>
+<!-- ============ TOC ============ -->
+<section class="toc">
+  <div class="wrap">
+    <div class="toc-head">
+      <p class="eyebrow" style="color:var(--gold)">Bên trong sổ tay</p>
+      <h2 style="font-size:1.9rem">7 phần, đọc hết trong một buổi</h2>
+      <p style="opacity:0.75">Đây là đúng mục lục thật của sổ tay — không giấu, không mập mờ.</p>
     </div>
-  </section>
+    <div class="toc-list">
+      <div class="toc-item"><span class="toc-num">Mở đầu</span><div><h3>Quyền lực của sự tự chủ</h3><p>Vì sao xây kênh video ngắn là con đường thực tế nhất để giành lại quyền tự chủ tài chính.</p></div></div>
+      <div class="toc-item"><span class="toc-num">P.1</span><div><h3>Tư duy tập trung & chọn ngách nội dung</h3><p>3 ngách nội dung "vàng" dành riêng cho phụ nữ và quy luật "một kênh — một chủ đề".</p></div></div>
+      <div class="toc-item"><span class="toc-num">P.2</span><div><h3>Kịch bản "Thôi Miên"</h3><p>Tử huyệt 3 giây đầu tiên (The Hook) và quy trình ra 30 kịch bản viral/tháng chỉ trong 1 buổi bằng AI.</p></div></div>
+      <div class="toc-item"><span class="toc-num">P.3</span><div><h3>Sản xuất video không cần rành công nghệ</h3><p>Tự tạo bối cảnh quay (nói không với reup), lồng tiếng, phụ đề tự động và mẹo chọn nhạc nền.</p></div></div>
+      <div class="toc-item"><span class="toc-num">P.4</span><div><h3>Đăng tải & thuật toán điểm chạm</h3><p>Tần suất đăng, cách chọn hashtag, và "khung giờ vàng" 1 giờ đầu sau khi đăng.</p></div></div>
+      <div class="toc-item"><span class="toc-num">P.5</span><div><h3>Biến lượt xem thành dòng tiền</h3><p>4 mô hình kiếm tiền thực tế: sản phẩm số, tư vấn 1:1, tài trợ nhãn hàng, tiếp thị liên kết.</p></div></div>
+      <div class="toc-item"><span class="toc-num">Kết</span><div><h3>Bạn đã sẵn sàng chưa?</h3><p>Bước đầu tiên để bắt đầu ngay hôm nay, không cần chờ mọi thứ hoàn hảo.</p></div></div>
+    </div>
+    <div class="toc-preview">
+      <img data-lightbox src="/images/page-preview-1.jpg" alt="Trang mẫu trong sổ tay — Vị thế xuất hiện">
+      <img data-lightbox src="/images/page-preview-2.jpg" alt="Trang mẫu trong sổ tay — Kịch bản Thôi Miên">
+      <p>Xem trước 2 trang thật trong sổ tay bạn sắp nhận — không giấu, không mập mờ.</p>
+    </div>
+  </div>
+</section>
 
-</main>
+<!-- ============ PRICE ============ -->
+<section class="price-sec">
+  <div class="wrap center">
+    <p class="eyebrow" style="color:var(--gold)">Giá trị chỉ bằng một ly cà phê</p>
+    <h2 style="font-size:1.9rem">39.000đ — rẻ hơn một ly cà phê, dùng được cả hành trình</h2>
+    <div class="receipt">
+      <span class="receipt-badge">Ưu đãi hôm nay</span>
+      <div class="receipt-row"><span>Sổ Tay Xây Kênh Viral</span><span class="old-price">199.000đ</span></div>
+      <div class="receipt-row"><span>Ưu đãi ra mắt</span><span>–160.000đ</span></div>
+      <div class="receipt-row total"><span>Thanh toán hôm nay</span><span class="price-tag">39.000đ</span></div>
+      <a href="#order" class="btn btn-gold price-cta">Nhận ngay — 39.000đ</a>
+    </div>
+    <p class="countdown" id="countdown">Ưu đãi kết thúc lúc 23:59 hôm nay — còn --:--:--</p>
+  </div>
+</section>
 
+<!-- ============ GUARANTEE ============ -->
+<section class="guarantee">
+  <div class="wrap">
+    <div class="guarantee-box">
+      <p class="eyebrow" style="color:var(--gold)">Cam kết của Nguyên</p>
+      <h2>Làm đúng 30 video trong 30 ngày mà chưa lên 2.000 follow?</h2>
+      <p>Mình mời bạn 10 ly cà phê. Thật.</p>
+      <p style="font-weight:700; margin-top:1.2em;">Điều kiện xác minh (để cả hai bên đều rõ ràng):</p>
+      <ol>
+        <li>Bạn đăng đủ 30 video trong 30 ngày liên tục, đúng 1 trong 3 ngách nội dung hướng dẫn trong sổ tay.</li>
+        <li>Gửi mình link kênh TikTok của bạn sau 30 ngày bắt đầu từ video đầu tiên để mình xác nhận điểm xuất phát và số follow.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq">
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--gold)">Câu hỏi thường gặp</p>
+    <h2 style="font-size:1.9rem; margin-bottom:20px;">Trước khi bạn nhấn nhận sổ tay</h2>
+    <details class="faq-item" open>
+      <summary>Sổ tay là file gì? Đọc trên điện thoại được không?</summary>
+      <p>Là file PDF 15 trang, đọc được trên điện thoại, máy tính bảng hoặc máy tính — mở bằng bất kỳ ứng dụng đọc PDF nào, không cần cài thêm gì.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Thanh toán xong bao lâu thì nhận được sách?</summary>
+      <p>Sau khi bạn bấm "Đã chuyển khoản" và gửi xác nhận qua Zalo, mình gửi file trong vòng vài phút trong khung giờ phản hồi <strong>8h–22h</strong> hằng ngày.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Chuyển khoản có an toàn không?</summary>
+      <p>Bạn chuyển khoản trực tiếp vào tài khoản ngân hàng / MoMo đứng tên Phạm Thái Nguyên — đúng người vận hành kênh @sechiatutam. Số tài khoản hiển thị công khai ngay trên trang, bạn có thể đối chiếu trước khi chuyển.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Lỡ chuyển khoản mà không nhận được sách thì sao?</summary>
+      <p>Nhắn trực tiếp Zalo <strong>0945 021 476</strong> kèm ảnh chụp bill chuyển khoản, mình xử lý ngay trong ngày.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============ ORDER ============ -->
+<section class="order" id="order">
+  <div class="wrap center" style="margin-bottom:10px;">
+    <p class="eyebrow" style="color:var(--gold-light)">Nhận sổ tay</p>
+    <h2 style="color:#fff; font-size:1.9rem;">Chỉ 2 bước, xong trong 1 phút</h2>
+  </div>
+  <div class="order-card">
+
+    <!-- STEP 1 -->
+    <div class="step active" id="step-1">
+      <p class="step-label">Bước 1 / 2 — Thông tin nhận sách</p>
+      <div class="field">
+        <label for="fname">Tên của bạn</label>
+        <input type="text" id="fname" placeholder="VD: Nguyễn Thị A" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="fzalo">Số điện thoại Zalo (để mình gửi sách)</label>
+        <input type="tel" id="fzalo" placeholder="VD: 0912 345 678" autocomplete="tel" inputmode="tel">
+      </div>
+      <button class="btn btn-gold" style="width:100%" onclick="goStep(2)">Tiếp tục thanh toán →</button>
+      <p class="confirm-note">Mình dùng số này để chủ động gửi sách cho bạn, kể cả khi bạn quên nhắn Zalo xác nhận.</p>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" id="step-2">
+      <p class="step-label">Bước 2 / 2 — Thanh toán 39.000đ</p>
+      <div class="qr-box">
+        <img data-lightbox src="/images/payment-qr.jpg" alt="Mã QR chuyển khoản Techcombank cho Phạm Thái Nguyên">
+        <p class="zoom-hint">🔍 Chạm vào mã để phóng to</p>
+        <p style="font-size:0.82rem; color:var(--ink); opacity:0.7; margin:0;">Quét mã bằng app ngân hàng hoặc MoMo</p>
+      </div>
+      <div class="copy-row">
+        <span>STK Techcombank: 7935 7977 77</span>
+        <button class="copy-btn" data-copy="7935797777">Sao chép</button>
+      </div>
+      <div class="copy-row">
+        <span>Ví MoMo: 0764 000 444</span>
+        <button class="copy-btn" data-copy="0764000444">Sao chép</button>
+      </div>
+      <p style="font-size:0.82rem; opacity:0.7;">Nội dung chuyển khoản gợi ý: <em>"SoTay [tên bạn]"</em></p>
+
+      <button class="btn btn-gold" style="width:100%; margin-top:8px;" id="confirmBtn" onclick="confirmPaid()">✅ Mình đã chuyển khoản — Gửi xác nhận</button>
+      <p class="confirm-note" id="confirmNote">Bấm nút này sau khi chuyển khoản xong — mình sẽ copy sẵn tin nhắn xác nhận cho bạn, bạn chỉ cần tự mở Zalo, tìm số 0945 021 476, dán và bấm gửi.</p>
+      <button class="back-step" onclick="goStep(1)">← Quay lại</button>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>Sẻ Chia Từ Tâm · <a href="https://www.tiktok.com/@sechiatutam" target="_blank" rel="noopener">@sechiatutam</a></p>
+  <div class="social-links">
+    <a href="https://www.tiktok.com/@sechiatutam" target="_blank" rel="noopener" aria-label="TikTok @sechiatutam" title="TikTok">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82c-1.02-.9-1.6-2.17-1.6-3.6h-3.2v13.4c0 1.62-1.32 2.94-2.94 2.94s-2.94-1.32-2.94-2.94 1.32-2.94 2.94-2.94c.3 0 .58.05.85.13V9.4a6.1 6.1 0 0 0-.85-.06A6.15 6.15 0 0 0 2.72 15.5 6.15 6.15 0 0 0 8.86 21.6a6.15 6.15 0 0 0 6.15-6.15V9.05a8.4 8.4 0 0 0 4.9 1.57V7.4a5.1 5.1 0 0 1-3.31-1.58z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@sechiatutam" target="_blank" rel="noopener" aria-label="YouTube @sechiatutam" title="YouTube">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+    </a>
+    <a href="https://www.facebook.com/sechiatutam" target="_blank" rel="noopener" aria-label="Facebook Sẻ Chia Từ Tâm" title="Facebook">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
+    </a>
+  </div>
+  <p>Zalo hỗ trợ: 0945 021 476 · Phản hồi trong khung giờ 8h–22h</p>
+</footer>
+
+<div class="sticky-bar" id="stickyBar">
+  <span class="p">Sổ Tay Xây Kênh Viral — <b>39.000đ</b></span>
+  <a href="#order" class="btn btn-gold">Nhận ngay</a>
+</div>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Đóng">✕</button>
+  <img id="lightboxImg" src="" alt="Ảnh phóng to">
+</div>
+
+<script>
+  // Sticky mobile bar shows after hero is scrolled past
+  const hero = document.querySelector('.hero');
+  const bar = document.getElementById('stickyBar');
+  const orderSec = document.getElementById('order');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.target===hero){ bar.classList.toggle('show', !e.isIntersecting); }
+      if(e.target===orderSec && e.isIntersecting){ bar.classList.remove('show'); }
+    });
+  }, {threshold:0.05});
+  io.observe(hero); io.observe(orderSec);
+
+  // Copy buttons
+  document.querySelectorAll('.copy-btn').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const val = btn.getAttribute('data-copy');
+      try{
+        await navigator.clipboard.writeText(val);
+        btn.textContent = 'Đã sao chép ✓';
+        btn.classList.add('done');
+        setTimeout(()=>{ btn.textContent='Sao chép'; btn.classList.remove('done'); }, 2500);
+      }catch(e){ btn.textContent = 'Bấm giữ để copy'; }
+    });
+  });
+
+  // Step navigation
+  function goStep(n){
+    document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+    document.getElementById('step-'+n).classList.add('active');
+    document.getElementById('order').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  // Confirm paid -> copy message (khong tu mo tab Zalo vi trinh duyet trong-app
+  // cua TikTok thuong chan viec mo tab moi / custom URL scheme)
+  const ZALO_NUMBER = "0945021476";
+  function confirmPaid(){
+    const name = document.getElementById('fname').value.trim() || "(chưa nhập tên)";
+    const zalo = document.getElementById('fzalo').value.trim() || "(chưa nhập số)";
+    const msg = `Mình vừa chuyển khoản 39.000đ để nhận Sổ Tay Xây Kênh Viral.\nTên: ${name}\nSĐT/Zalo: ${zalo}`;
+    const note = document.getElementById('confirmNote');
+    navigator.clipboard.writeText(msg).then(()=>{
+      note.textContent = "Đã sao chép sẵn tin nhắn xác nhận cho bạn — giờ hãy tự mở Zalo, tìm số 0945 021 476, dán (giữ và chọn Dán) vào khung chat rồi bấm gửi. Sách sẽ tới trong vài phút!";
+    }).catch(()=>{
+      note.textContent = `Hãy tự mở Zalo, tìm số 0945 021 476 và gửi: "${msg}"`;
+    });
+    note.classList.add('success');
+    document.getElementById('confirmBtn').textContent = "✅ Đã sẵn sàng gửi xác nhận";
+  }
+
+  // Countdown to end of today (local time) — honest daily-offer framing
+  function updateCountdown(){
+    const now = new Date();
+    const end = new Date(now); end.setHours(23,59,59,999);
+    let diff = Math.max(0, end - now);
+    const h = String(Math.floor(diff/3600000)).padStart(2,'0');
+    const m = String(Math.floor(diff%3600000/60000)).padStart(2,'0');
+    const s = String(Math.floor(diff%60000/1000)).padStart(2,'0');
+    const el = document.getElementById('countdown');
+    if(el) el.textContent = `Ưu đãi kết thúc lúc 23:59 hôm nay — còn ${h}:${m}:${s}`;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Image lightbox (QR + trang mau)
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+  document.querySelectorAll('[data-lightbox]').forEach(img=>{
+    img.addEventListener('click', ()=>{
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  function closeLightbox(){ lightbox.hidden = true; document.body.style.overflow = ''; }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) closeLightbox(); });
+</script>
 </body>
 </html>
