@@ -417,7 +417,6 @@
         <input type="tel" id="fzalo" placeholder="VD: 0912 345 678" autocomplete="tel" inputmode="tel">
       </div>
       <button class="btn btn-gold" style="width:100%" onclick="handleStep1Submit()">Tiếp tục thanh toán →</button>
-      <p class="confirm-note">Mình dùng số này để chủ động gửi sách cho bạn, kể cả khi bạn quên nhắn Zalo xác nhận.</p>
     </div>
 
     <!-- STEP 2 -->
@@ -439,7 +438,7 @@
       <p style="font-size:0.82rem; opacity:0.7;">Nội dung chuyển khoản gợi ý: <em id="transferNote">"[tên bạn] [số điện thoại]"</em></p>
 
       <button class="btn btn-gold" style="width:100%; margin-top:8px;" id="confirmBtn" onclick="confirmPaid()">✅ ĐÃ CHUYỂN KHOẢN</button>
-      <p class="confirm-note" id="confirmNote">Bấm nút này sau khi chuyển khoản xong — mình sẽ copy sẵn tin nhắn xác nhận cho bạn, bạn chỉ cần tự mở Zalo, tìm số 0945 021 476, dán và bấm gửi.</p>
+      <p class="confirm-note" id="confirmNote">Khi bạn đã chuyển khoản và nhấp ĐÃ CHUYỂN KHOẢN hệ thống sẽ kiểm tra và tự động gởi Sổ Tay tới Zalo của bạn.</p>
       <button class="back-step" onclick="goStep(1)">← Quay lại</button>
     </div>
 
@@ -554,13 +553,9 @@
     const zalo = document.getElementById('fzalo').value.trim() || "(chưa nhập số)";
     const msg = `Mình vừa chuyển khoản 39.000đ để nhận Sổ Tay Xây Kênh Viral.\nTên: ${name}\nSĐT/Zalo: ${zalo}`;
     const note = document.getElementById('confirmNote');
-    navigator.clipboard.writeText(msg).then(()=>{
-      note.textContent = "Đã sao chép sẵn tin nhắn xác nhận cho bạn — giờ hãy tự mở Zalo, tìm số 0945 021 476, dán (giữ và chọn Dán) vào khung chat rồi bấm gửi. Sách sẽ tới trong vài phút!";
-    }).catch(()=>{
-      note.textContent = `Hãy tự mở Zalo, tìm số 0945 021 476 và gửi: "${msg}"`;
-    });
+    navigator.clipboard.writeText(msg).catch(()=>{});
     note.classList.add('success');
-    document.getElementById('confirmBtn').textContent = "✅ Đã sẵn sàng gửi xác nhận";
+    document.getElementById('confirmBtn').textContent = "✅ Đã Ghi Nhận, Cảm Ơn Bạn!";
 
     showModal('Hệ thống đang kiểm tra và gởi file qua Zalo của bạn. Cảm ơn bạn. Mình tin bạn sẽ tự chủ được tài chính khi làm theo Sổ Tay này');
 
