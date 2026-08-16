@@ -435,7 +435,7 @@
         <span>Ví MoMo: 0764 000 444</span>
         <button class="copy-btn" data-copy="0764000444">Sao chép</button>
       </div>
-      <p style="font-size:0.82rem; opacity:0.7;">Nội dung chuyển khoản gợi ý: <em id="transferNote">"[tên bạn] [số điện thoại]"</em></p>
+      <p style="font-size:0.82rem; opacity:0.7;">Nội dung chuyển khoản: Tên + số Zalo</p>
 
       <button class="btn btn-gold" style="width:100%; margin-top:8px;" id="confirmBtn" onclick="confirmPaid()">✅ ĐÃ CHUYỂN KHOẢN</button>
       <p class="confirm-note" id="confirmNote">Khi bạn đã chuyển khoản và nhấp ĐÃ CHUYỂN KHOẢN hệ thống sẽ kiểm tra và tự động gởi Sổ Tay tới Zalo của bạn.</p>
@@ -525,13 +525,6 @@
     document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
     document.getElementById('step-'+n).classList.add('active');
     document.getElementById('order').scrollIntoView({behavior:'smooth', block:'start'});
-
-    if(n === 2){
-      const name = document.getElementById('fname').value.trim();
-      const zalo = document.getElementById('fzalo').value.trim();
-      const transferNote = document.getElementById('transferNote');
-      transferNote.textContent = (name && zalo) ? `"${name} ${zalo}"` : '"[tên bạn] [số điện thoại]"';
-    }
   }
 
   // Bam "Tiep tuc thanh toan" o Buoc 1 -> kiem tra da dien du ten + SDT chua
